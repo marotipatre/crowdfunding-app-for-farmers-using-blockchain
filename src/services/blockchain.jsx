@@ -56,6 +56,21 @@ const connectWallet = async () => {
     reportError(error)
   }
 }
+  
+const disconnectWallet = async () => {
+  try {
+    // Clear the connected account state
+    setGlobalState('connectedAccount', null)
+    // Optionally, you can also reset the provider or any other connection settings
+    if (ethereum && ethereum.selectedAddress) {
+      ethereum.selectedAddress = null
+    }
+    console.log('Wallet disconnected')
+  } catch (error) {
+    reportError(error)
+  }
+}
+
 
 const createProject = async ({
   title,
@@ -268,4 +283,5 @@ export {
   payoutProject,
   refundProject,
   getBackers,
+  disconnectWallet,
 }

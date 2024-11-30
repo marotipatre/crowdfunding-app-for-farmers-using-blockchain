@@ -49,7 +49,7 @@ const Hero = () => {
         </div>
         <div className="flex flex-col justify-center items-center h-20 border shadow-md w-full">
           <span className="text-lg font-bold text-green-900 leading-5">
-            {stats?.totalDonations || 0} ETH
+            {stats?.totalDonations*(306334.00) || 0} Rupees
           </span>
           <span>Invested</span>
         </div>

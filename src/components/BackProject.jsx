@@ -64,7 +64,7 @@ const BackProject = ({ project }) => {
               step={0.01}
               min={0.01}
               name="amount"
-              placeholder="Amount (ETH)"
+              placeholder="Amount (Rupees)"
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
               required

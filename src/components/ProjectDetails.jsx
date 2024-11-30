@@ -1,3 +1,4 @@
+import React from 'react'
 import Identicons from 'react-identicons'
 import { FaEthereum } from 'react-icons/fa'
 import {
@@ -7,10 +8,20 @@ import {
   useGlobalState,
 } from '../store'
 import { payoutProject } from '../services/blockchain'
+import ProjectAnalysisModal from './ProjectAnalysisModal'
 
 const ProjectDetails = ({ project }) => {
   const [connectedAccount] = useGlobalState('connectedAccount')
+  const [showAnalysisModal, setShowAnalysisModal] = React.useState(false)
   const expired = new Date().getTime() > Number(project?.expiresAt + '000')
+
+  const openAnalysisModal = () => {
+    setShowAnalysisModal(true)
+  }
+
+  const closeAnalysisModal = () => {
+    setShowAnalysisModal(false)
+  }
 
   return (
     <div className="pt-24 mb-5 px-6 flex justify-center">
@@ -85,10 +96,10 @@ const ProjectDetails = ({ project }) => {
               </div>
 
               <div className="flex justify-between items-center font-bold mt-2">
-                <small>{project?.raised} ETH Raised</small>
+                <small>{project?.raised*(306334.00)} INR Raised</small>
                 <small className="flex justify-start items-center">
                   <FaEthereum />
-                  <span>{project?.cost} ETH</span>
+                  <span>{project?.cost*(306334.00)}  ₹ </span>
                 </small>
               </div>
 
@@ -104,6 +115,16 @@ const ProjectDetails = ({ project }) => {
                     Back Project
                   </button>
                 ) : null}
+
+                <button
+                  type="button"
+                  className="inline-block px-6 py-2.5 bg-blue-600
+                  text-white font-medium text-xs leading-tight uppercase
+                  rounded-full shadow-md hover:bg-blue-700"
+                  onClick={openAnalysisModal}
+                >
+                  Project Analysis
+                </button>
 
                 {connectedAccount == project?.owner ? (
                   project?.status != 3 ? (
@@ -159,8 +180,12 @@ const ProjectDetails = ({ project }) => {
           </div>
         </div>
       </div>
+      {showAnalysisModal && (
+        <ProjectAnalysisModal project={project} onClose={closeAnalysisModal} />
+      )}
     </div>
   )
 }
 
 export default ProjectDetails
+

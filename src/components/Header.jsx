@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { connectWallet } from '../services/blockchain'
 import { truncate, useGlobalState } from '../store'
 import logo from '../components/Farmoney logo.png';
+import { useState } from 'react';
 
 const Header = () => {
   const [connectedAccount] = useGlobalState('connectedAccount')
+  const [isConnected, setIsConnected] = useState(false)
 
   return (
     <header
@@ -13,7 +15,7 @@ const Header = () => {
         p-5 bg-white shadow-lg fixed top-0 left-0 right-0"
     >
       <Link
-        to="/"
+        to="/projects"
         className="flex justify-start items-center
       text-xl text-black space-x-1"
       >

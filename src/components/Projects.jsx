@@ -85,10 +85,10 @@ const ProjectCard = ({ project }) => {
             className="flex justify-between items-center 
         font-bold mt-1 mb-2 text-gray-700"
           >
-            <small>{project.raised} ETH Raised</small>
+            <small>{project.raised*(306334.00)}  ₹ Raised</small>
             <small className="flex justify-start items-center">
               <FaEthereum />
-              <span>{project.cost} ETH</span>
+              <span>{project.cost*(306334.00)} ₹</span>
             </small>
           </div>
 
